@@ -8,27 +8,35 @@ padding:0;
 
 
 
-body, html{height:100%;}
+body, {height:100%;}
 
 body{
 
 text-align:center;
 
+
+background-color: #1F2024; }
+
+p
+{
+    color: #FFFFFF;
 }
 
 
 
-#main{
 
-max-width:1280px;
-
-min-height:100%;
-
-margin:0 auto;
-
-position:relative;
-
+body{
+background-color:CODE_COULEUR;
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -52,6 +60,11 @@ header  {
     height: 38px;
     margin: 0;
     background : #000000;
+}
+
+.exemple {
+  text-align: left;
+  border: solid;
 }
 
 
@@ -91,4 +104,3 @@ li a {
 img {
 	width: 500px;
 	height: 300px;
-}
