@@ -7,7 +7,6 @@ padding:0;
 }
 
 
-
 body, {height:100%;}
 
 body{
@@ -23,19 +22,13 @@ p
 }
 
 
-
-
-body{
-background-color:CODE_COULEUR;
+section
+{
+    margin-left: 70px;
+    margin-right: 70px;
+    border: 1px solid yellow;
+    word-spacing: 120%;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -44,7 +37,7 @@ footer{
 
 background:#CAAB31;
 
-position:absolute;
+position: relative;
 
 bottom:0;
 
@@ -56,18 +49,18 @@ height:50px;
 
 }
 
+
+
+
+
+
+
+
 header  {
     height: 38px;
     margin: 0;
     background : #000000;
 }
-
-.exemple {
-  text-align: left;
-  border: solid;
-}
-
-
 
 
 
@@ -83,7 +76,7 @@ li a {
 
 
 .vert-center {
-	position: absolute !important;
+	position: absolute ;
 	top: 0;
 	bottom: 0;
 	right: 0;
