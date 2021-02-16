@@ -1,56 +1,113 @@
-
 <!DOCTYPE html>
 <html lang="fr">
-  <title>Cergy Sports</title>
-<header>
-<h1>Cergy Sports</h1>
+<head>
+<meta charset="UTF-8"/>
+<title>Jeu Snake</title>
+<style>
+#dessin{
+  border:solid 1px black;
+}
 
-  </header>
-  
-  <style>
+    body { background-color: #CEE3F6; }
 
-    h1 { color: #CAAB31; }
+</style>
+</head>
+<body><center>
+  Score : <span id="score">0</span>
+  <br/>
+  <canvas id="dessin"></canvas>
+  <script>
 
-    h2 { color: #CAAB31; }
+  var NB_COLONNES=30;
+var NB_LIGNES=20;
+var COTE=20;
+var score=document.getElementById("score");
+var dessin=document.getElementById("dessin");
+var ctx=dessin.getContext("2d");
+dessin.width=NB_COLONNES*COTE;
+dessin.height=NB_LIGNES*COTE;
+ctx.fillStyle="#0000FF";
+var snake=[[4,0],[3,0],[2,0],[1,0],[0,0]];
+var bonbon;
+var snakeIncX=1;
+var snakeIncY=0;
+function majDessin(){
+	ctx.clearRect(0,0,dessin.width,dessin.height);
 
-    h3 { color: #CAAB31; }
+	for(var i=0,l=snake.length;i<l;i++){
+		ctx.fillRect(snake[i][0]*COTE,snake[i][1]*COTE,COTE,COTE);
+	}
 
-    p { color: #D9DBE3; }
+	ctx.fillRect(bonbon[0]*COTE,bonbon[1]*COTE,COTE,COTE);
+}
+function majScore(s){
+	score.innerHTML=s;
+}
 
-    a { color: #CAAB31; }
-  </style>
-  <link rel="stylesheet" type="text/css" href="test.css" />
-  <nav>
-  	<ul>
-  		<li><a href="index.html">Accueil</a></li>
-  		<li><a href="concept.html">Concepts</a></li>
-  		<li><a href="activites.html">Activités</a></li>
-  	</ul>
-  </nav>
-<br><br>
-<h1>Accueil</h1><br>
+function finPartie(){
+	clearInterval(timerJeu);
+	alert("Perdu !");
+	location.reload();
+}
+function boucleJeu(){
+	if(bougeSnake()){
+		majDessin();
+	}else{
+		finPartie();
+	}
+}
 
-<section>  <div>
-    <img src="salle2.jpg" alt=""/>
-    <br><br>
-    <h3>Nos principes</h3>
-      <br><br><br><br>
-    <p class="exemple"> L’équipe du club de sport a pour objectif de vous faire atteindre les vôtres dans les meilleures conditions. Nous faisons de votre bien-être physique, physiologique et mental notre priorité en vous établissant un suivi personnalisé en accord avec vos besoins. En plus de nos activités diverses au travers d’équipements haut de gamme et de cours taillés sur mesure pour tous les niveaux.
-  Pour que vos séances de sports se passent dans les meilleures conditions, nos coachs sportifs vont vous prodiguer des conseils qui vont optimiser votre motivation et votre endurance aux activités sportives que vous aurez sélectionnées en fonction de vos objectifs.
-  Comme le sport est leur métier, mais aussi leur passion, ils sauront vous faire découvrir les astuces qui vous aideront à atteindre le chemin de la performance. Pour être bien dans votre corps et dans votre tête, n’attendez plus et venez nous rejoindre au club Cergy Sports
-
-  L’équipe du club de sport a pour objectif de vous faire atteindre les vôtres dans les meilleures conditions. Nous faisons de votre bien-être physique, physiologique et mental notre priorité en vous établissant un suivi personnalisé en accord avec vos besoins. En plus de nos activités diverses au travers d’équipements haut de gamme et de cours taillés sur mesure pour tous les niveaux.
-  Pour que vos séances de sports se passent dans les meilleures conditions, nos coachs sportifs vont vous prodiguer des conseils qui vont optimiser votre motivation et votre endurance aux activités sportives que vous aurez sélectionnées en fonction de vos objectifs.
-  Comme le sport est leur métier, mais aussi leur passion, ils sauront vous faire découvrir les astuces qui vous aideront à atteindre le chemin de la performance. Pour être bien dans votre corps et dans votre tête, n’attendez plus et venez nous rejoindre au club Cergy Sports
-
-  L’équipe du club de sport a pour objectif de vous faire atteindre les vôtres dans les meilleures conditions. Nous faisons de votre bien-être physique, physiologique et mental notre priorité en vous établissant un suivi personnalisé en accord avec vos besoins. En plus de nos activités diverses au travers d’équipements haut de gamme et de cours taillés sur mesure pour tous les niveaux.
-  Pour que vos séances de sports se passent dans les meilleures conditions, nos coachs sportifs vont vous prodiguer des conseils qui vont optimiser votre motivation et votre endurance aux activités sportives que vous aurez sélectionnées en fonction de vos objectifs.
-  Comme le sport est leur métier, mais aussi leur passion, ils sauront vous faire découvrir les astuces qui vous aideront à atteindre le chemin de la performance. Pour être bien dans votre corps et dans votre tête, n’attendez plus et venez nous rejoindre au club Cergy Sports</p>
-
-<br></div></section>
-<br>
-
-
-<footer>Nous contacter : 06.59.85.64.19 cergy-sport@email.fr <br>8 Rue du Cerisier Cergy - Horraires 8h - 20h du Lundi au Samedi
-
-</footer></html>
+  window.onkeydown = function(e) {
+    var key = e.keyCode || e.which;
+    switch (key) {
+  }
+	switch(e.keyCode){
+		case 37: //Gauche
+			if(snakeIncX==0){
+				snakeIncX=-1;
+				snakeIncY=0
+			}
+		break;
+    	case 38: //Haut
+			if(snakeIncY==0){
+				snakeIncX=0;
+				snakeIncY=-1
+			}
+		break;
+    	case 39: //Droite
+			if(snakeIncX==0){
+				snakeIncX=1;
+				snakeIncY=0
+			}
+		break;
+    	case 40: //Bas
+			if(snakeIncY==0){
+				snakeIncX=0;
+				snakeIncY=1;
+			}
+		break;
+	}
+}
+function placeBonbon(){
+	bonbon=[1+Math.floor((NB_COLONNES-2)*Math.random()),1+Math.floor((NB_LIGNES-2)*Math.random())];
+}
+function bougeSnake(){
+	var tete=[snake[0][0]+snakeIncX,snake[0][1]+snakeIncY];
+  	if(tete[0]==-1||tete[0]==NB_COLONNES||tete[1]==-1||tete[1]==NB_LIGNES) return false;
+    for(var i=0,l=snake.length-1;i<l;i++){
+		if((tete[0]==snake[i][0])&&(tete[1]==snake[i][1])) return false;
+	}
+  if((tete[0]==bonbon[0])&&(tete[1]==bonbon[1])){
+  placeBonbon();
+  majScore(snake.length-4);
+}else{
+  snake.pop();
+}
+snake.unshift(tete);
+return true;
+}
+placeBonbon();
+var timerJeu=setInterval(boucleJeu,100);
+</script></center>
+</body>
+</html>
